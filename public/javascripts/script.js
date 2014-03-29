@@ -5,13 +5,14 @@ $(function(){
     return false;
   }
 
-  var url = 'http://localhost:3000';
+  var url = 'http://' + window.location.host;
 
   // cache de objetos de jQuery
   var doc = $(document);
   var win = $(window);
   var canvas = $('#paper');
   var instructions = $('#instructions');
+  var connections = $('#connections');
   var ctx = canvas[0].getContext('2d');
 
   // id único para la session
@@ -89,10 +90,16 @@ $(function(){
     ctx.stroke();
   }
 
+  function connectionHandler(data) {
+    console.log('connections', connections);
+    connections.text(data.connections + ' connectados');
+  }
+
   /**
    * Adjuntamos los eventos
    */
   socket.on('move', moveHandler);
+  socket.on('connections', connectionHandler);
   canvas.on('mousedown', mousedownHandler);
   doc.on('mousemove', mousemoveHandler);
 
