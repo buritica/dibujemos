@@ -97,7 +97,7 @@ $(function(){
 
   function connectionHandler(data) {
     console.log('connections', connections);
-    connections.text(data.connections + ' connectados');
+    connections.text(data.connections + ' conectados');
   }
 
   function randomColor() {
