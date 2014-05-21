@@ -24,6 +24,7 @@ $(function(){
   var cursors = {};
   var prev = {};
   var lastEmit = $.now();
+  var cursorColor = randomColor();
 
   // abrimos la conexion
   var socket = io.connect(url);
@@ -45,7 +46,7 @@ $(function(){
     });
 
     if(data.drawing && clients[data.id]){
-      drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+      drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, data.color);
     }
 
     // actualizamos el estado
@@ -69,6 +70,7 @@ $(function(){
         'x': e.pageX,
         'y': e.pageY,
         'drawing': drawing,
+        'color': cursorColor,
         'id': id
       };
       socket.emit('mousemove', movement);
@@ -77,14 +79,17 @@ $(function(){
 
     if(drawing){
 
-      drawLine(prev.x, prev.y, e.pageX, e.pageY);
+      drawLine(prev.x, prev.y, e.pageX, e.pageY, cursorColor);
 
       prev.x = e.pageX;
       prev.y = e.pageY;
     }
   }
 
-  function drawLine(fromx, fromy, tox, toy){
+  function drawLine(fromx, fromy, tox, toy, color){
+    ctx.beginPath(); // create a new empty path (no subpaths!)
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
     ctx.moveTo(fromx, fromy);
     ctx.lineTo(tox, toy);
     ctx.stroke();
@@ -93,6 +98,12 @@ $(function(){
   function connectionHandler(data) {
     console.log('connections', connections);
     connections.text(data.connections + ' connectados');
+  }
+
+  function randomColor() {
+    // from http://www.paulirish.com/2009/random-hex-color-code-snippets/
+    return '#'+(function lol(m,s,c){return s[m.floor(m.random() * s.length)] +
+    (c && lol(m,s,c-1));})(Math,'0123456789ABCDEF',4);
   }
 
   /**
