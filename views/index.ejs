@@ -1,29 +1,71 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Dibujemos</title>
-  <link rel="stylesheet" href="stylesheets/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/fonts.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 <body>
-  <div id="connections"></div>
-  <div id="cursors">
-    <!-- Aqui pondremos los cursores de nuestros amigos -->
-  </div>
-
-  <canvas id="paper" width="1900" height="1000">
-    Tu navegador debe soportar canvas
-  </canvas>
-
-  <hgroup id="instructions">
-    <h1>¡Dibujemos!</h1>
-    <h2>Dibuja en cualquier lugar con tu cursor</h2>
-    <h3>Si quieres un canvas nuevo simplemente refresca la página</h3>
-  </hgroup>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="javascripts/script.js"></script>
-
+<button class="buttons" id="colorPicker">¡Cambia de color!</button>
+<div class="colores">
+	<ul>
+	<li class="rojo">Rojo</li>
+	<li class="magenta">Magenta</li>
+	<li class="azul">Azul</li>
+	<li class="verde">Verde</li>
+	<li class="amarillo">Amarillo</li>
+	<li class="naranja">Naranja</li>
+	<li class="negro">Negro</li>
+	<li class="random">¡Aleatorio!</li>
+</ul>
+</div>
+<button class="buttons" id="clearing">¡Bórralo todo!</button>
+<button class="buttons" id="helping">Ayuda</button>
+<button class="buttons icon-pencil" id="lines"><div class="widths">
+	<div id="1"class="heights data-1"><span>1</span> </div>
+	<div id="2" class="heights data-2"><span>5</span> </div>
+	<div id="3" class="heights data-3"><span>7</span> </div>
+	<div id="4" class="heights data-4"><span>9</span> </div>
+	<div id="5" class="heights data-5"><span>11</span> </div>
+	<div id="6" class="heights data-6"><span>13</span> </div>
+</div></button>
+<button class="buttons icon-eraser" id="eraser"></button>
+<div id="modal">
+	<button id="close">X</button>
+	¡Has entrado en el mini-chat! :D
+	<form>	
+	<input id="input-ado"placeholder="Escribe algo corre" value="">
+	<button id="submit">Enviar</button>
+	</form>
+<!-- 	<select class="select">
+		<option id="20">20</option>
+		<option id="23">23</option>
+		<option id="25">25</option>
+		<option id="27">27</option>
+		<option id="29">29</option>
+		<option id="32">32</option>
+		<option id="35">35</option>
+	</select> -->
+</div>
+<div id="cursors">
+	<!-- Cursores colegas -->
+</div>
+<canvas id="papel" width="1900" height="1000">
+	Tu navegador no soporta canvas.
+</canvas>
+<hgroup id="instructions">
+	<h1>¡A dibujar!</h1>
+	<h2> Dibuja lo que quieras. </h2>
+	<h3> Doble click donde quieras para hablar con los demás. </h3>
+</hgroup>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/javascripts/script.js"></script>
 </body>
 </html>
+<!-- añadir textos yep pero sin socket-->
+<!-- añadir ayuda yep -->
+<!-- añadir limpieza yep -->
+<!-- añadir gamas de colores -->

@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -17,16 +12,17 @@ io = io.listen(server);
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+// // development only
+// if ('development' == app.get('env')) {
+//   app.use(express.errorHandler());
+// }
 
 app.get('/', function(req, res){
-  res.render('index', { title: 'Dibujemos' });
+  res.render('index', { title: 'Node Paint' });
 });
 
 io.set('log level', 1);
@@ -48,10 +44,12 @@ io.sockets.on('connection', function (socket) {
     console.log('connected', connections);
     socket.broadcast.emit('connections', {connections:connections});
   });
+  socket.on('chat message', function (carlos) {
+    io.emit('chat message', carlos);
+  });
 });
 
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
