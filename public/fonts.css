@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "node-paint";
+  src:url("/fonts/node-paint.eot");
+  src:url("/fonts/node-paint.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/node-paint.woff") format("woff"),
+    url("/fonts/node-paint.ttf") format("truetype"),
+    url("/fonts/node-paint.svg#node-paint") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "node-paint" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "node-paint" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-square:before {
+  content: "d";
+}
+.icon-eraser:before {
+  content: "e";
+}
+.icon-pencil:before {
+  content: "a";
+}
